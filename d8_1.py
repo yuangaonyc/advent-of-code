@@ -23,13 +23,16 @@ def rotate_row(row, x):
 for row in data:
 	items = row.split(" ")
 	if items[0] == "rect":
-		rect(int(items[-1][0]), int(items[-1][-1]))
+		rect(int(items[-1].split("x")[0]), int(items[-1].split("x")[-1]))
 
-	if items[1] == "row":
-		rotate_row(int(items[2][-1]), int(items[-1]))
+	elif items[1] == "row":
+		rotate_row(int(items[2].split("=")[-1]), int(items[-1]))
 
-	if items[1] == "column":
-		rotate_col(int(items[2][-1]), int(items[-1]))
+	elif items[1] == "column":
+		rotate_col(int(items[2].split("=")[-1]), int(items[-1]))
+
+	else:
+		print("something")
 
 cnt =0
 for i in range(0, set_col):
@@ -38,3 +41,4 @@ for i in range(0, set_col):
 			cnt += 1
 
 print(df.stack().value_counts())
+
